@@ -1,0 +1,6 @@
+- name: test
+  command: whoami
+  register: info
+- name: debug
+  debug: 
+    msg: "{{info}}"
