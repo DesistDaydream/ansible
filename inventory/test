@@ -2,4 +2,6 @@
 hw-cloud-xngy-jump-server-linux-2 ansible_host=192.168.0.249 ansible_port=10022
 [test:vars]
 ansible_user=lichenhao
+ansible_password={{ test_password }}
 ansible_become=yes
+ansible_become_password={{ test_become_password }}
