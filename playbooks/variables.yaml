@@ -1,5 +1,5 @@
 - hosts: test
-  # gather_facts: no
+  gather_facts: no
   # vars_files:
   # - ../inventory/group_vars/vault.yaml
   roles:
