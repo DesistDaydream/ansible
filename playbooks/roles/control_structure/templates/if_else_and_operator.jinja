@@ -10,6 +10,11 @@ ifElseVar 变值为 b 时输出本行
 ifElseVar 值既不是 a 也不是 b 时输出本行
 {% endif %}
 
+{# 多条件判断只能这么写？不能用正则么？~~o(╯□╰)o #}
+{% if region == "tj" or region == "bj" %}
+当前区域为 {{ region }}
+{% endif %}
+
 {# 下面是 Jinja 的 is 关键字用来进行测试的示例 #}
 {% if definedVar is defined %}
 测试变量 definedVar 是否已定义。若已定义，则输出本行内容
@@ -22,9 +27,3 @@ ifElseVar 值既不是 a 也不是 b 时输出本行
 {% if definedVar is regex("D|d|z") %}
 如果变量 definedVar 中包含 D、d、z 三个字符中任意一个，则输出本行内容
 {% endif%}
-
-{# 多条件判断只能这么写？不能用正则么？~~o(╯□╰)o #}
-{% if region == "tj" or region == "bj" %}
-当前区域为 {{ region }}
-{% endif %}
-
