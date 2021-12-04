@@ -1,0 +1,39 @@
+- name: if_else
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    lstrip_blocks: true
+    trim_blocks: true
+  with_items:
+  - {src: './if_else_and_operator.jinja',dest: '/tmp/if_else_and_operator.conf'}
+
+# 使用 is 关键字进行测试
+- name: 测试变量 isVar 是不是字符串
+  vars:
+    isVar: "1234567890"
+  debug:
+    msg: "string"
+  when: isVar is string
+
+- name: 测试变量中是否包含某些字符
+  vars:
+    name: "DesistDaydream"
+  debug:
+    msg: "{{ name }}"
+  when: name is regex("D|A")
+
+# - name: 测试变量是否匹配多个值
+#   vars:
+#     region: "tj"
+#   debug:
+#     msg: "{{ tj }}"
+#   when: region is "tj" or region is "bj"
+
+# - name: for
+#   template:
+#     src: "{{ item.src }}"
+#     dest: "{{ item.dest }}"
+#     lstrip_blocks: true
+#     trim_blocks: true
+#   with_items:
+#   - {src: './for.jinja',dest: '/tmp/for.conf'}

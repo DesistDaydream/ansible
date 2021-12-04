@@ -1,0 +1,30 @@
+{% set ifElseVar = "b" %}
+{% set definedVar = "DesistDaydream" %}
+{% set region = "bj" %}
+
+{% if ifElseVar == "a"  %}
+这是一个最基本的 if else 控制结构。ifElseVar 变值为 a 时输出本行
+{% elif ifElseVar == "b" %}
+ifElseVar 变值为 b 时输出本行
+{% else %}
+ifElseVar 值既不是 a 也不是 b 时输出本行
+{% endif %}
+
+{# 下面是 Jinja 的 is 关键字用来进行测试的示例 #}
+{% if definedVar is defined %}
+测试变量 definedVar 是否已定义。若已定义，则输出本行内容
+{% endif %}
+
+{% if undefinedVar is undefined %}
+测试变量 definedVar 是否未定义。若未定义，则输出本行内容
+{% endif %}
+
+{% if definedVar is regex("D|d|z") %}
+如果变量 definedVar 中包含 D、d、z 三个字符中任意一个，则输出本行内容
+{% endif%}
+
+{# 多条件判断只能这么写？不能用正则么？~~o(╯□╰)o #}
+{% if region == "tj" or region == "bj" %}
+当前区域为 {{ region }}
+{% endif %}
+
