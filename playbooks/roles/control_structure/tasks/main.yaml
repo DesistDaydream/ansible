@@ -1,30 +1,33 @@
 # 条件判断
 - name: 条件判断
   block:
-  # 最基本的 if...else...
-  - name: if_else
-    template:
-      src: "{{ item.src }}"
-      dest: "{{ item.dest }}"
-      lstrip_blocks: true
-      trim_blocks: true
-    with_items:
-    - {src: './if_else_and_operator.jinja',dest: '/tmp/if_else_and_operator.conf'}
-    tags:
-    - if_else
-  # 使用 is 关键字进行测试
-  - name: 测试变量 isVar 是不是字符串
-    vars:
-      isVar: "1234567890"
-    debug:
-      msg: "string"
-    when: isVar is string
-  - name: 测试变量中是否包含某些字符
-    vars:
-      name: "DesistDaydream"
-    debug:
-      msg: "{{ name }}"
-    when: name is regex("D|A")
+    # 最基本的 if...else...
+    - name: if_else
+      template:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        lstrip_blocks: true
+        trim_blocks: true
+      with_items:
+        - {
+            src: "./if_else_and_operator.jinja",
+            dest: "/tmp/if_else_and_operator.conf",
+          }
+      tags:
+        - if_else
+    # 使用 is 关键字进行测试
+    - name: 测试变量 isVar 是不是字符串
+      vars:
+        isVar: "1234567890"
+      debug:
+        msg: "string"
+      when: isVar is string
+    - name: 测试变量中是否包含某些字符
+      vars:
+        name: "DesistDaydream"
+      debug:
+        msg: "{{ name }}"
+      when: name is regex("D|A")
 
 # 过滤器
 - name: filters
@@ -34,9 +37,9 @@
     lstrip_blocks: true
     trim_blocks: true
   with_items:
-  - {src: './filters.jinja',dest: '/tmp/filters.conf'}
+    - { src: "./filters.jinja", dest: "/tmp/filters.conf" }
   tags:
-  - filters
+    - filters
 
 # 继承
 - name: extends
@@ -46,11 +49,9 @@
     lstrip_blocks: true
     trim_blocks: true
   with_items:
-  - {src: './extends.jinja',dest: '/tmp/extends.conf'}
+    - { src: "./extends.jinja", dest: "/tmp/extends.conf" }
   tags:
-  - extends
-
-
+    - extends
 # - name: 测试变量是否匹配多个值
 #   vars:
 #     region: "tj"
