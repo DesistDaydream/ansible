@@ -60,22 +60,24 @@
 #   when: region is "tj" or region is "bj"
 
 # 循环
-- name: for
-  template:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
-    lstrip_blocks: true
-    trim_blocks: true
-  with_items:
-    - src: "./for.jinja"
-      dest: "/tmp/for.conf"
-  tags:
-    - for
-# 通过循环一个数组变量，以批量创建目录
-- name: loop_create_dir
-  file:
-    path: "/tmp/{{ item }}"
-    state: directory
-  loop: "{{ list_of_loop }}"
-  tags:
-    - loop_create_dir
+- name: loop
+  block:
+    - name: for
+      template:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        lstrip_blocks: true
+        trim_blocks: true
+      with_items:
+        - src: "./for.jinja"
+          dest: "/tmp/for.conf"
+      tags:
+        - for
+    # 通过循环一个数组变量，以批量创建目录
+    - name: loop_variable
+      file:
+        path: "/tmp/{{ item }}"
+        state: directory
+      loop: "{{ variable_for_loop['list'] }}"
+      tags:
+        - loop_variable

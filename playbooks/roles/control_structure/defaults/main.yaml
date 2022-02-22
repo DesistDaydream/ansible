@@ -1,3 +1,4 @@
-list_of_loop:
-  - loop_one
-  - loop_two
+variable_for_loop:
+  list:
+    - loop_one
+    - loop_two
