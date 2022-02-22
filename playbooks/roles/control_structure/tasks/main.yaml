@@ -9,10 +9,8 @@
         lstrip_blocks: true
         trim_blocks: true
       with_items:
-        - {
-            src: "./if_else_and_operator.jinja",
-            dest: "/tmp/if_else_and_operator.conf",
-          }
+        - src: "./if_else_and_operator.jinja"
+          dest: "/tmp/if_else_and_operator.conf"
       tags:
         - if_else
     # 使用 is 关键字进行测试
@@ -37,7 +35,8 @@
     lstrip_blocks: true
     trim_blocks: true
   with_items:
-    - { src: "./filters.jinja", dest: "/tmp/filters.conf" }
+    - src: "./filters.jinja"
+      dest: "/tmp/filters.conf"
   tags:
     - filters
 
@@ -49,7 +48,8 @@
     lstrip_blocks: true
     trim_blocks: true
   with_items:
-    - { src: "./extends.jinja", dest: "/tmp/extends.conf" }
+    - src: "./extends.jinja"
+      dest: "/tmp/extends.conf"
   tags:
     - extends
 # - name: 测试变量是否匹配多个值
@@ -60,13 +60,22 @@
 #   when: region is "tj" or region is "bj"
 
 # 循环
-# - name: for
-#   template:
-#     src: "{{ item.src }}"
-#     dest: "{{ item.dest }}"
-#     lstrip_blocks: true
-#     trim_blocks: true
-#   with_items:
-#   - {src: './for.jinja',dest: '/tmp/for.conf'}
-#   tags:
-#   - for
+- name: for
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    lstrip_blocks: true
+    trim_blocks: true
+  with_items:
+    - src: "./for.jinja"
+      dest: "/tmp/for.conf"
+  tags:
+    - for
+# 通过循环一个数组变量，以批量创建目录
+- name: loop_create_dir
+  file:
+    path: "/tmp/{{ item }}"
+    state: directory
+  loop: "{{ list_of_loop }}"
+  tags:
+    - loop_create_dir
