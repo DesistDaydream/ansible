@@ -7,7 +7,7 @@
 
     - name: Print a debug message
       ansible.builtin.debug:
-        msg: "文件存在，大小为：{{file_stat.stat.size}}"
+        msg: "文件存在，大小为：{{ file_stat.stat.size }}"
       when: file_stat.stat.exists == true
 
     - name: Print a debug message
