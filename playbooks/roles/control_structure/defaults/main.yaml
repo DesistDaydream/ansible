@@ -1,0 +1,4 @@
+variable_for_loop:
+  list:
+    - loop_one
+    - loop_two

@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.tmpl": "go-template",
+        "*.yaml": "ansible",
+        "*.yml": "ansible",
+    },
+}

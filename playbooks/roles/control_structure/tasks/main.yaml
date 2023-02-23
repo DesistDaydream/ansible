@@ -1,0 +1,83 @@
+# 条件判断
+- name: 条件判断
+  block:
+    # 最基本的 if...else...
+    - name: if_else
+      template:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        lstrip_blocks: true
+        trim_blocks: true
+      with_items:
+        - src: "./if_else_and_operator.jinja"
+          dest: "/tmp/if_else_and_operator.conf"
+      tags:
+        - if_else
+    # 使用 is 关键字进行测试
+    - name: 测试变量 isVar 是不是字符串
+      vars:
+        isVar: "1234567890"
+      debug:
+        msg: "string"
+      when: isVar is string
+    - name: 测试变量中是否包含某些字符
+      vars:
+        name: "DesistDaydream"
+      debug:
+        msg: "{{ name }}"
+      when: name is regex("D|A")
+
+# 过滤器
+- name: filters
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    lstrip_blocks: true
+    trim_blocks: true
+  with_items:
+    - src: "./filters.jinja"
+      dest: "/tmp/filters.conf"
+  tags:
+    - filters
+
+# 继承
+- name: extends
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    lstrip_blocks: true
+    trim_blocks: true
+  with_items:
+    - src: "./extends.jinja"
+      dest: "/tmp/extends.conf"
+  tags:
+    - extends
+# - name: 测试变量是否匹配多个值
+#   vars:
+#     region: "tj"
+#   debug:
+#     msg: "{{ tj }}"
+#   when: region is "tj" or region is "bj"
+
+# 循环
+- name: loop
+  block:
+    - name: for
+      template:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        lstrip_blocks: true
+        trim_blocks: true
+      with_items:
+        - src: "./for.jinja"
+          dest: "/tmp/for.conf"
+      tags:
+        - for
+    # 通过循环一个数组变量，以批量创建目录
+    - name: loop_variable
+      file:
+        path: "/tmp/{{ item }}"
+        state: directory
+      loop: "{{ variable_for_loop['list'] }}"
+      tags:
+        - loop_variable

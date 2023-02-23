@@ -1,0 +1,30 @@
+- name: register variables
+  block:
+    - name: test
+      command: whoami
+      register: info
+    - name: debug
+      debug:
+        msg: "{{info}}"
+  tags:
+    - register
+
+# 想要获取 ansible_facts 变量，需要在 Role 启动文件中，将 gather_facts 字段设为 yes。
+- name: facts variables
+  debug:
+    msg: "{{ansible_facts}}"
+  tags:
+    - facts
+
+- name: template variables
+  block:
+    - name: template variables
+      template:
+        src: "./template_variables.j2"
+        dest: "/tmp/template_variables.conf"
+      register: template_return_values
+    - name: print template return values
+      debug:
+        msg: "{{template_return_values}}"
+  tags:
+    - template

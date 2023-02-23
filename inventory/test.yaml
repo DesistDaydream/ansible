@@ -1,0 +1,13 @@
+all:
+  children:
+    ungrouped: {}
+    test:
+      hosts:
+        hw-cloud-xngy-jump-server-linux-2:
+          ansible_host: 192.168.0.249
+          ansible_port: 10022
+      vars:
+        ansible_become: "yes"
+        ansible_become_password: ""
+        ansible_password: ""
+        ansible_user: lichenhao

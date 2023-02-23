@@ -1,0 +1,27 @@
+- name: Changed_when 判断的结果为真时，任务状态为 changed
+  shell:
+    cmd: "docker start changed_when"
+  register: is_started
+  changed_when: "'changed_when' in is_started['stdout']"
+  ignore_errors: true
+
+- name: Changed_when 判断的结果为假时，任务状态为 ok
+  shell:
+    cmd: "docker start changed_when"
+  register: is_started
+  changed_when: "'changed_when' in is_started['stderr']"
+  ignore_errors: true
+
+- name: Failed_when 判断的结果为真时，任务状态为 failed
+  shell:
+    cmd: "docker start failed_when"
+  register: is_started
+  failed_when: "'failed_when' in is_started['stdout']"
+  ignore_errors: true
+
+- name: Failed_when 判断的结果为假时，任务状态为 changed
+  shell:
+    cmd: "docker start failed_when"
+  register: is_started
+  failed_when: "'failed_when' in is_started['stderr']"
+  ignore_errors: true
