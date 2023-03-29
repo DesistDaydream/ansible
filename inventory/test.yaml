@@ -11,3 +11,11 @@ all:
         ansible_become_password: ""
         ansible_password: ""
         ansible_user: lichenhao
+    tj_test:
+      hosts:
+        tj-test-spst-lichenhao:
+          ansible_host: 172.38.180.212
+          ansible_port: 22
+      vars:
+        ansible_user: root
+        ansible_password: ""

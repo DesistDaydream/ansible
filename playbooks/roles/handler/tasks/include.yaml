@@ -1,0 +1,9 @@
+- name: Call handler in include
+  shell: ls
+  notify: HandlerTwo
+
+- ansible.builtin.import_tasks: handlers.yaml
+
+- name: Task
+  ansible.builtin.debug:
+    msg: "Include 中在 Handler 调用后的任务"

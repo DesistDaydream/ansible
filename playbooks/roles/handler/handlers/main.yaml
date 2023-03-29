@@ -1,0 +1,7 @@
+- name: HandlerOne
+  ansible.builtin.debug:
+    msg: "HandlerOne被调用"
+
+- name: HandlerTwo
+  ansible.builtin.debug:
+    msg: "HandlerTwo被调用"
